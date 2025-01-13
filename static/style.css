@@ -1,14 +1,14 @@
 body {
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    background-color: #f0f4f8;
+    background-image: url(images/weather_image.jpg);
 }
 
 .container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background: #ffffff;
+    background: #92deff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
