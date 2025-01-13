@@ -1,57 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Weather Search App</h1>
-        <input type="text" id="cityInput" placeholder="Enter city name">
-        <button onclick="searchWeather()">Search</button>
+  <div class="container">
+    <h1>Weather Search App</h1>
+    
+    <!-- Search Input -->
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <button onclick="searchWeather()">Search</button>
 
-        <div id="weatherInfo" class="weather-info"></div>
-        <div id="errorMessage" class="error-message"></div>
-    </div>
+    <!-- Weather Display -->
+    <div id="weatherInfo" class="weather-info"></div>
+    <div id="errorMessage" class="error-message"></div>
 
-    <script>
-        function searchWeather() {
-            const city = document.getElementById('cityInput').value.trim();
-            const weatherInfo = document.getElementById('weatherInfo');
-            const errorMessage = document.getElementById('errorMessage');
-            weatherInfo.innerHTML = '';
-            errorMessage.innerHTML = '';
+    <!-- Search History -->
+    <h2>Search History</h2>
+    <ul id="cityHistory" class="city-list"></ul>
+  </div>
 
-            if (!city) {
-                errorMessage.textContent = 'Please enter a city name.';
-                return;
-            }
+  <script>
+    document.addEventListener("DOMContentLoaded", loadSearchHistory);
 
-            fetch(`/api/weather?city=${city}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        throw new Error(data.error);
-                    }
-                    displayWeather(data);
-                })
-                .catch(error => {
-                    errorMessage.textContent = error.message;
-                });
-        }
+    function searchWeather() {
+      const city = document.getElementById('cityInput').value.trim();
+      const weatherInfo = document.getElementById('weatherInfo');
+      const errorMessage = document.getElementById('errorMessage');
+      
+      weatherInfo.innerHTML = '';
+      errorMessage.innerHTML = '';
 
-        function displayWeather(data) {
-            const weatherInfo = document.getElementById('weatherInfo');
-            weatherInfo.innerHTML = `
-                <h3>Weather in ${data.city}</h3>
-                <p>Temperature: ${data.temperature} &#8451;</p>
-                <p>Condition: ${data.condition}</p>
-                <p>Humidity: ${data.humidity}%</p>
-                <p>Wind Speed: ${data.wind_speed} m/s</p>
-            `;
-        }
-    </script>
+      if (!city) {
+        errorMessage.textContent = 'Please enter a city name.';
+        return;
+      }
+
+      // Fetch weather data from the backend
+      fetch(`/api/weather?city=${city}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            throw new Error(data.error);
+          }
+          displayWeather(data);
+          saveToHistory(city);
+        })
+        .catch(error => {
+          errorMessage.textContent = error.message;
+        });
+    }
+
+    function displayWeather(data) {
+      const weatherInfo = document.getElementById('weatherInfo');
+      weatherInfo.innerHTML = `
+        <h3>Weather in ${data.city}</h3>
+        <p>Temperature: ${data.temperature} &#8451;</p>
+        <p>Condition: ${data.condition}</p>
+        <p>Humidity: ${data.humidity}%</p>
+        <p>Wind Speed: ${data.wind_speed} m/s</p>
+      `;
+    }
+
+    function saveToHistory(city) {
+      let cities = JSON.parse(localStorage.getItem('searchHistory')) || [];
+      if (!cities.includes(city)) {
+        cities.push(city);
+        localStorage.setItem('searchHistory', JSON.stringify(cities));
+        updateCityHistory();
+      }
+    }
+
+    function loadSearchHistory() {
+      updateCityHistory();
+    }
+
+    function updateCityHistory() {
+      const cityHistory = document.getElementById('cityHistory');
+      const cities = JSON.parse(localStorage.getItem('searchHistory')) || [];
+      cityHistory.innerHTML = cities.map(city => `<li>${city}</li>`).join('');
+    }
+  </script>
 </body>
 </html>
