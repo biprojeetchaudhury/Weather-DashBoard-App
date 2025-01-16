@@ -81,8 +81,9 @@ GET /api/weather?city=London
 ---
 ## **Deployment**
 - **This website is deployed using replit and the link is as follows-**
-- https://caa41b91-1cdb-4959-90a0-8768d77cf947-00-13v8m7r8asw2.pike.replit.dev/
-
+```bash
+https://caa41b91-1cdb-4959-90a0-8768d77cf947-00-13v8m7r8asw2.pike.replit.dev/
+```
 ---
 ## **Future Improvements**
 
