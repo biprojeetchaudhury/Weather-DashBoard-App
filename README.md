@@ -20,7 +20,7 @@ cd weather-search-app
 ```
 
 ### **2. Install Dependencies**
-Install required Python packages:
+Install required Python packages(In my case they were already installed so I didn't have to install them again):
 ```bash
 pip install -r requirements.txt
 ```
