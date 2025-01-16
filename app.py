@@ -2,13 +2,14 @@ from flask import Flask, render_template, request, jsonify
 import requests
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 
-# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 
-# API configuration
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 API_KEY = os.getenv("WEATHER_API_KEY")
 WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather"
 
@@ -24,7 +25,7 @@ def get_weather():
         return jsonify({'error': 'City name is required'}), 400
 
     try:
-        # Make the API request
+        
         response = requests.get(WEATHER_API_URL, params={
             'q': city,
             'appid': API_KEY,
@@ -51,5 +52,6 @@ def get_weather():
         return jsonify({'error': 'An error occurred'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    from os import environ
+    port = int(environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
