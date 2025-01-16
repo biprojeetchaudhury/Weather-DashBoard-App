@@ -3,6 +3,7 @@ body {
     text-align: center;
     background-image: url(images/images.jpeg);
     background-size: cover;
+    /* filter: blur(5px); */
 }
 
 .container {
@@ -108,7 +109,7 @@ button:hover {
 #weatherInfo {
     animation: fadeIn 2s ease-out forwards;
     position: relative; 
-    background-color: #007eb4bd;
+    background-color: #007eb4bd;;
     border-radius: 8px;
     padding: 16px;
     max-width: 400px;
