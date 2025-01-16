@@ -9,10 +9,36 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background: #92deff;
+    background: #92deffac;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+@keyframes slideFromTop {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0; 
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+@keyframes fadeIn {
+0% {
+    opacity: 0; 
+}
+100% {
+    opacity: 1; 
+}
+}
+.container h1 {
+    animation: slideFromTop 2s ease-out;
+    position: relative; 
+}
+  
+  
 
 h1 {
     color: #11ff6c;
@@ -24,8 +50,27 @@ h1 {
 }
 
 ul{
-    text-align: left;
+    list-style: none;
+    background-color: #0036b4bd;
+    border-radius: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul li{
+    color: #e2e2e2;
+    background: rgba(19, 1, 1, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    width: 90%;
+    text-align: center;
+    transition: background-color 0.3s ease;}
+
+ul li:hover{
+    background-color: rgba(0, 32, 138, 0.8);
+    color: #ff0000;
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
 }
 
 h2{
@@ -58,6 +103,48 @@ button:hover {
     background-color: #00b377;
     transition-duration: 0.5s;
 }
+
+#weatherInfo {
+    animation: fadeIn 2s ease-out forwards;
+    position: relative; 
+    background-color: rgba(3, 62, 255, 0.8);
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+  }
+
+#weatherInfo h3 {
+font-size: 1.5em;
+color: #26ff00;
+margin: 20px 0;
+stroke: black;
+
+}
+
+#weatherInfo p {
+font-size: 1em;
+color: #ffffff;
+margin: 6px 0;
+
+}
+
+#weatherInfo:hover {
+background-color: rgba(0, 32, 138, 0.8);
+transform: translateY(-1px);
+transition: all 0.3s ease;
+}
+
+#weatherInfo:hover h3,#weatherInfo:hover p {
+    color: #ff0000;
+    }
+
+.hidden {
+    display: none;
+  }
 
 .weather-info {
     margin-top: 20px;
