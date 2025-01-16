@@ -73,13 +73,17 @@ GET /api/weather?city=London
 
 ## **Design Decisions**
 
-- **Frontend:** Simple single-page design with a responsive layout.
+- **Frontend:** Built a frontend using HTML, CSS, and JavaScript, incorporating animations for an engaging and interactive user experience.
 - **Backend:** Flask was chosen for its simplicity and lightweight nature.
 - **Weather API:** OpenWeatherMap API was selected due to its comprehensive data and free tier availability.
 - **Data Storage:** Browser-side `localStorage` was used to maintain the search history without requiring server-side storage.
 
 ---
+## **Deployment**
+- **This website is deployed using replit and the link is as follows-**
+- https://caa41b91-1cdb-4959-90a0-8768d77cf947-00-13v8m7r8asw2.pike.replit.dev/
 
+---
 ## **Future Improvements**
 
 1. **Enhanced Error Handling:** Provide more descriptive error messages for different API issues.
@@ -101,4 +105,12 @@ GET /api/weather?city=London
 
 ## **Conclusion**
 The Weather Search App is a lightweight, functional application providing a user-friendly way to check current weather conditions and maintain a history of searches. With planned improvements, the app aims to deliver even more value and convenience for its users.
+# **User Interface**
+![Weather App - Google Chrome 16-01-2025 12_18_27 PM](https://github.com/user-attachments/assets/c0130b29-5a5e-4bd4-ac13-e3ad10001d69)
+![Weather App - Google Chrome 16-01-2025 12_18_45 PM](https://github.com/user-attachments/assets/6f61a87d-d29d-4d70-85f5-37c1469b1644)
+![Weather App - Google Chrome 16-01-2025 12_18_59 PM](https://github.com/user-attachments/assets/835b5d52-7bad-4c19-959c-9c1dd1cf03cf)
+# **snippets of Animations used**
+![weather](https://github.com/user-attachments/assets/a813c3a5-1aa4-431b-aa6e-495c8f22319c)
+![weather 2](https://github.com/user-attachments/assets/061c8be6-884c-4c28-ae65-0c47fc3a0e1e)
+
 
