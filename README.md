@@ -21,7 +21,7 @@ The Weather App API is a Flask-based web application that provides weather data 
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/biprojeetchaudhury/Weather-DashBoard-App.git
-   cd weather-app
+   cd Weather-DashBoard-app
    ```
 
 2. **Install dependencies:**
@@ -31,7 +31,7 @@ The Weather App API is a Flask-based web application that provides weather data 
 
 3. **Create a `.env` file in the root directory:**
    ```plaintext
-   WEATHER_API_KEY=your_openweather_api_key
+   WEATHER_API_KEY=openweather_api_key
    ```
 
 4. **Run the application:**
