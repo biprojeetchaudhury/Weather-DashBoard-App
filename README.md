@@ -1,117 +1,88 @@
-# Weather-DashBoard-App
+# Weather App API
 
 ## **Project Overview**
+The Weather App API is a Flask-based web application that provides weather data for a given city. It fetches real-time weather information using the OpenWeather API and exposes an API endpoint that can be integrated with various frontends. The app is designed to be easily deployed on platforms like Render, ensuring scalability and ease of use.
 
-The Weather Search App allows users to search for the current weather conditions of any city worldwide. The app displays information such as temperature, weather conditions, humidity, and wind speed. The application also stores a history of searched cities using browser-side storage, making it easy for users to revisit previous searches.
+### **Features:**
+- Fetch current weather details (temperature, condition, humidity, wind speed).
+- Lightweight and modular architecture.
+- CORS-enabled to allow access from any frontend.
 
 ---
 
 ## **Setup Instructions**
 
-### **Prerequisites**
-- Python 3.11 or higher
-- Flask framework
-- Internet connection for API requests
+### **Prerequisites:**
+- Python 3.9+
+- OpenWeather API Key (Sign up at https://openweathermap.org/ to get your API key).
 
-### **1. Clone the Repository**
-```bash
-git clone <repository_url>
-cd weather-search-app
-```
+### **Steps to Run Locally:**
 
-### **2. Install Dependencies**
-Install required Python packages(In my case they were already installed so I didn't have to install them again):
-```bash
-pip install -r requirements.txt
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/biprojeetchaudhury/weather-app.git
+   cd weather-app
+   ```
 
-### **3. Set Up Environment Variables**
-Create a `.env` file in the project root and add your OpenWeatherMap API key:
-```plaintext
-API_KEY=your_openweather_api_key_here
-```
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### **4. Run the Application**
-Start the Flask server by executing:
-```bash
-python app.py
-```
+3. **Create a `.env` file in the root directory:**
+   ```plaintext
+   WEATHER_API_KEY=your_openweather_api_key
+   ```
 
-The app will be available at `http://localhost:5000`.
+4. **Run the application:**
+   ```bash
+   python3 app.py
+   ```
+   The app will start at `http://127.0.0.1:5000/`.
 
----
-
-## **API Documentation**
-
-### **Endpoint: Get Weather Data**
-- **URL:** `/api/weather`
-- **Method:** `GET`
-- **Query Parameters:**
-  - `city`: Name of the city (required)
-
-#### **Example Request**
-```http
-GET /api/weather?city=London
-```
-
-#### **Response**
-```json
-{
-  "city": "London",
-  "temperature": 18.5,
-  "condition": "clear sky",
-  "humidity": 55,
-  "wind_speed": 3.5
-}
-```
-
-#### **Error Responses**
-- **404:** City not found
-- **500:** Internal server error
+### **Deploy on Render:**
+1. Push the repository to a GitHub/GitLab repository.
+2. Log in to your [Render](https://render.com/) account and create a new Web Service.
+3. Configure the service:
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `gunicorn app:app --bind 0.0.0.0:$PORT`
+4. Add the `WEATHER_API_KEY` as an environment variable in Render.
+5. Deploy and access your application via the generated URL(`https://biprojeetchaudhury.github.io/Weather-DashBoard-App/`).
+6. Wake-Up Time expectations - about 30 seconds
 
 ---
 
 ## **Design Decisions**
-
-- **Frontend:** Built a frontend using HTML, CSS, and JavaScript, incorporating animations for an engaging and interactive user experience.
-- **Backend:** Flask was chosen for its simplicity and lightweight nature.
-- **Weather API:** OpenWeatherMap API was selected due to its comprehensive data and free tier availability.
-- **Data Storage:** Browser-side `localStorage` was used to maintain the search history without requiring server-side storage.
+1. Frontend - HTML,CSS,Javascript
+2. Backend - Flask
 
 ---
-## **Deployment**
-- **This website is deployed using replit and the link is as follows-**
-```bash
-https://caa41b91-1cdb-4959-90a0-8768d77cf947-00-13v8m7r8asw2.pike.replit.dev/
-```
----
+
 ## **Future Improvements**
 
-1. **Enhanced Error Handling:** Provide more descriptive error messages for different API issues.
-2. **Autocomplete Suggestions:** Implement city name suggestions as the user types.
-3. **User Preferences:** Allow users to save temperature units (Celsius/Fahrenheit) and theme preferences.
-4. **Mobile Optimization:** Improve the UI for better mobile device usability.
-5. **Localization:** Support multiple languages for a broader audience.
-6. **Weather Forecast:** Add a 7-day weather forecast feature.
+- Provide a 7-day weather forecast using additional OpenWeather API endpoints.
+- Clear previous search history
+- Shortcut to search previously searched city by clicking it
 
 ---
 
 ## **Notes About Platform Limitations**
+1. **Cold Starts:**
+   - On serverless platforms like Render, there might be a slight delay during the first request after a period of inactivity.
 
-- **API Rate Limits:** The OpenWeatherMap free tier has request limits that may impact frequent searches.
-- **Browser Storage:** `localStorage` has size limitations and may not scale for larger datasets.
-- **Deployment Restrictions:** Free platforms like Replit may impose resource or storage constraints.
+2. **Rate Limiting:**
+   - OpenWeather API has rate limits based on your subscription tier. Ensure the application handles rate-limit errors gracefully.
+
+3. **Static IP Restrictions:**
+   - Some OpenWeather accounts may require whitelisting IPs. Ensure Render's dynamic IPs are compatible with your setup.
 
 ---
 
-## **Conclusion**
-The Weather Search App is a lightweight, functional application providing a user-friendly way to check current weather conditions and maintain a history of searches. With planned improvements, the app aims to deliver even more value and convenience for its users.
-# **User Interface**
-![Weather App - Google Chrome 16-01-2025 12_18_27 PM](https://github.com/user-attachments/assets/c0130b29-5a5e-4bd4-ac13-e3ad10001d69)
-![Weather App - Google Chrome 16-01-2025 12_18_45 PM](https://github.com/user-attachments/assets/6f61a87d-d29d-4d70-85f5-37c1469b1644)
-![Weather App - Google Chrome 16-01-2025 12_18_59 PM](https://github.com/user-attachments/assets/835b5d52-7bad-4c19-959c-9c1dd1cf03cf)
-# **snippets of Animations used**
-![weather](https://github.com/user-attachments/assets/a813c3a5-1aa4-431b-aa6e-495c8f22319c)
-![weather 2](https://github.com/user-attachments/assets/061c8be6-884c-4c28-ae65-0c47fc3a0e1e)
+With these guidelines, you can easily set up, deploy, and extend the Weather App API for various use cases.
+
+### **User Interface**
+![Weather App - Google Chrome 16-01-2025 09_08_00 PM](https://github.com/user-attachments/assets/192d485a-d382-4378-92c0-b5c5eb6ac302)
+![Weather App - Google Chrome 16-01-2025 09_09_34 PM](https://github.com/user-attachments/assets/faa145a9-1878-4a8f-9040-2095d447c9df)
+![Weather App - Google Chrome 16-01-2025 09_09_50 PM](https://github.com/user-attachments/assets/c47c7d99-2a73-4a68-b84e-1c6f5ba1c5af)
 
 
