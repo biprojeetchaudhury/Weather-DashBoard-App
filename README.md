@@ -20,7 +20,7 @@ The Weather App API is a Flask-based web application that provides weather data 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/biprojeetchaudhury/weather-app.git
+   git clone https://github.com/biprojeetchaudhury/Weather-DashBoard-App.git
    cd weather-app
    ```
 
