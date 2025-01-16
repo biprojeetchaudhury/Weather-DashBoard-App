@@ -8,19 +8,17 @@
 </head>
 <body>
   <div class="container">
-    <h1>Weather Search App</h1>
-    
+    <h1>Weather Dashboard</h1>
     
     <input type="text" id="cityInput" placeholder="Enter city name">
     <button onclick="searchWeather()">Search</button>
 
-    
-    <div id="weatherInfo" class="weather-info"></div>
+    <div id="weatherInfo" class="hidden"></div>
     <div id="errorMessage" class="error-message"></div>
 
     
-    <h2>Search History</h2>
-    <ul id="cityHistory" class="city-list"></ul>
+    <h2 id="toggleHistoryButton" onclick="toggleHistory()">Search History ▼</h2>
+    <ul id="cityHistory" class="city-list hidden"></ul>
   </div>
 
   <script>
@@ -30,7 +28,7 @@
       const city = document.getElementById('cityInput').value.trim();
       const weatherInfo = document.getElementById('weatherInfo');
       const errorMessage = document.getElementById('errorMessage');
-      
+
       weatherInfo.innerHTML = '';
       errorMessage.innerHTML = '';
 
@@ -39,7 +37,7 @@
         return;
       }
 
-      
+      // Fetch weather data from the backend
       fetch(`/api/weather?city=${city}`)
         .then(response => response.json())
         .then(data => {
@@ -63,6 +61,7 @@
         <p>Humidity: ${data.humidity}%</p>
         <p>Wind Speed: ${data.wind_speed} m/s</p>
       `;
+      weatherInfo.classList.remove('hidden');
     }
 
     function saveToHistory(city) {
@@ -83,6 +82,17 @@
       const cities = JSON.parse(localStorage.getItem('searchHistory')) || [];
       cityHistory.innerHTML = cities.map(city => `<li>${city}</li>`).join('');
     }
+
+    function toggleHistory() {
+      const cityHistory = document.getElementById('cityHistory');
+      const toggleButton = document.getElementById('toggleHistoryButton');
+
+      cityHistory.classList.toggle('hidden');
+      toggleButton.textContent = cityHistory.classList.contains('hidden')
+        ? "Search History ▼"
+        : "Search History ▲";
+    }
   </script>
+
 </body>
 </html>
